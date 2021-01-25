@@ -1,0 +1,649 @@
+﻿* {
+    box-sizing: border-box; /* Includes borders and padding when specifying element size */
+}
+
+html {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    padding: 5px 20% 5px 20%;
+    height: 100%;
+    flex: 1 0 auto;
+}
+
+/* Pushes footer to the bottom of short pages. */
+#navbar-and-content {
+    flex: 1 0 auto;
+}
+
+html, body {
+    height: 100%;
+}
+
+.hor-center-text {
+    text-align: center;
+}
+
+.hor-center-element {
+    display: block;
+    margin: auto;
+}
+
+.inline {
+    display: inline;
+}
+
+.subtext {
+    font-size: 12pt;
+}
+
+div.center-contents-on-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.border-div {
+    margin: auto;
+    background-color: white;
+    border: 1px solid #c9c9c9;
+    border-radius: 6px;
+    padding: 75px 20px 75px 20px;
+}
+
+div.barcode-div {
+    background-color: white;
+    border: 1px solid #c9c9c9;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+
+div.small-div {
+    width: 50%;
+}
+
+div.medium-div {
+    width: 75%;
+}
+
+img.barcode-img {
+    height: 50px;
+    width: 100%;
+    padding: 3px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .flex-container div {
+        margin: 15px 30px 15px 0px;
+    }
+
+p, span, label, select, table tr td, input, button, ul, ol, footer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16pt;
+    color: #454545;
+}
+
+/* =================================
+    Navbar
+==================================== */
+
+.menu-wrapper {
+    background-color: #2b2b2b;
+    height: 55px;
+    line-height: 50px;
+    width: 100%;
+    position: sticky;
+    position: -webkit-sticky; /* Safari */
+    top: 0;
+}
+
+.header {
+    background-color: #2b2b2b;
+}
+
+    .header ul {
+        margin: 0;
+        list-style: none;
+    }
+
+    .header li {
+        float: left;
+    }
+
+        .header li a {
+            display: block;
+            color: #fafafa;
+            text-decoration: none;
+            padding: 0px 25px;
+        }
+
+            .header li a:hover {
+                color: #bfbfbf;
+            }
+
+    .header .navbar-logo {
+        float: left;
+        padding-left: 20%;
+    }
+
+        .header .navbar-logo a {
+            text-decoration: none;
+        }
+
+        .header .navbar-logo #navbar-logo-image {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header .navbar-logo #navbar-logo-text {
+            padding-top: 3px;
+            padding-left: 5px;
+            font-family: 'Baloo 2', sans-serif;
+            color: #fafafa;
+            font-size: 24pt;
+            letter-spacing: -2px;
+        }
+
+        .header .navbar-logo #navbar-logo-image,
+        .header .navbar-logo #navbar-logo-text {
+            vertical-align: middle;
+        }
+
+    .header .menu-btn {
+        display: none;
+    }
+
+    .header .menu-icon {
+        display: none;
+    }
+
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+        padding-right: 20%;
+    }
+
+/* =================================
+    Footer
+==================================== */
+
+footer {
+    flex-shrink: 0;
+    background-color: #e8e8e8;
+    border-top: 1px solid #dbdbdb;
+    width: 100%;
+    font-size: 12pt;
+    padding: 5px 20% 5px 20%;
+    margin-top: 55px;
+}
+
+/* =================================
+    Text Headers
+==================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Vollkorn Bold', serif;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: #2b2b2b;
+}
+
+h1 {
+    font-size: 50pt;
+}
+
+h2 {
+    font-size: 40pt;
+}
+
+h3 {
+    font-size: 30pt;
+}
+
+h4 {
+    font-size: 24pt;
+}
+
+h5 {
+    font-size: 18pt;
+}
+
+h6 {
+    font-size: 14pt;
+}
+
+/* =================================
+    Links
+==================================== */
+
+a {
+    color: #8e18c9;
+}
+
+    a:visited {
+        color: #420a5e;
+    }
+
+    a:active {
+        color: #b94af0;
+    }
+
+/* =================================
+    Select Dropdowns
+==================================== */
+
+/* Modified from Matthew Morek's code https://stackoverflow.com/a/5809186/10172129 */
+select {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: #8e18c9;
+    background-image: url('../resources/images/white-arrow-down.png');
+    background-size: 20px 20px;
+    background-position: center right;
+    background-repeat: no-repeat;
+    border: 1px solid #9537c4;
+    color: #fafafa;
+    font-size: 16pt;
+    text-overflow: ellipsis;
+}
+
+    select:hover {
+        color: #c9c9c9;
+    }
+
+    select option {
+        background-color: #fafafa;
+        font-family: inherit;
+        font-size: inherit;
+        color: #454545;
+    }
+
+        select option:nth-child(even) {
+            background-color: #dfd1e6;
+        }
+
+/* =================================
+    Input
+==================================== */
+
+input {
+    border-radius: 6px;
+}
+
+    input[type=submit], input[type=button] {
+        background-color: #8e18c9;
+        border: none;
+        color: #fafafa;
+        padding: 5px 25px 5px 25px;
+    }
+
+        input[type=submit]:hover, input[type=button]:hover {
+            color: #c9c9c9;
+            cursor: pointer;
+        }
+
+/* =================================
+    Buttons
+==================================== */
+
+button {
+    background-color: #8e18c9;
+    color: #fafafa;
+    border: 0;
+    border-radius: 6px;
+    padding: 5px 25px 5px 25px;
+}
+
+    button:hover {
+        color: #c9c9c9;
+    }
+
+/* =================================
+    Paragraphs
+==================================== */
+
+p {
+    text-align: justify;
+    text-align-last: left;
+}
+
+/* =================================
+    Horizontal Rules
+==================================== */
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid #dedede;
+    display: block;
+    margin: auto;
+    width: 95%;
+}
+
+/* =================================
+    Tables
+==================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    table tr:nth-child(even) td {
+        background-color: #dfd1e6;
+    }
+
+    table tr:first-child th,
+    table tr:first-child td {
+        border-top: 0;
+    }
+
+        table tr:first-child th:first-child,
+        table tr:first-child td:first-child {
+            border-radius: 6px 0 0 0;
+        }
+
+        table tr:first-child th:last-child,
+        table tr:first-child td:last-child {
+            border-radius: 0 6px 0 0;
+        }
+
+    table tr:last-child th,
+    table tr:last-child td {
+        border-bottom: 0;
+    }
+
+        table tr:last-child th:first-child,
+        table tr:last-child td:first-child {
+            border-radius: 0 0 0 6px;
+        }
+
+        table tr:last-child th:last-child,
+        table tr:last-child td:last-child {
+            border-radius: 0 0 6px 0;
+        }
+
+    table tr th:first-child,
+    table tr td:first-child {
+        border-left: 0;
+    }
+
+    table tr th:last-child,
+    table tr td:last-child {
+        border-right: 0;
+    }
+
+    table tr th:only-child,
+    table tr td:only-child {
+        border-radius: 6px;
+    }
+
+    table tr th {
+        font-family: 'Montserrat SemiBold', sans-serif;
+        text-align: left;
+        background-color: #8e18c9;
+        color: #fafafa;
+        border: 1px solid #9537c4;
+    }
+
+    table tr td {
+        border: 1px solid #c7b2d1;
+    }
+
+    table tr th,
+    table tr td {
+        padding: 10px;
+        font-size: 12pt;
+    }
+
+    table.no-design-table tr td {
+        font-size: 16pt;
+        border: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    table.no-design-table tr:nth-child(even) td {
+        background-color: initial;
+    }
+
+/* =================================
+    Media Queries
+==================================== */
+
+@media (max-width: 1500px) {
+    .header .navbar-logo {
+        padding-left: 15%;
+    }
+
+    .header .menu {
+        padding-right: 15%;
+    }
+
+    .header li a {
+        padding: 0px 15px;
+    }
+    
+    footer {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+    main {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+    th, td {
+        padding-left: 0.5%;
+        padding-right: 0.5%;
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header ul {
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .header li {
+        float: initial;
+    }
+
+        .header li a {
+            padding: 5px 20px;
+        }
+
+            .header li a:hover,
+            .header .menu-btn:hover {
+                color: #fafafa;
+                background-color: rgba(0, 0, 0, 0.10);
+            }
+
+    .header .navbar-logo {
+        display: block;
+        text-decoration: none;
+        padding-left: 10%;
+    }
+
+    .header .menu {
+        clear: both;
+        max-height: 0;
+        float: initial;
+        background-color: #363636;
+        padding-right: initial;
+    }
+
+    /* hamburger menu/X icon */
+    .header .menu-icon {
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        padding: 28px 0px;
+        position: relative;
+        user-select: none;
+        padding-right: 10%;
+    }
+
+        .header .menu-icon .navicon {
+            background: #fff;
+            display: block;
+            height: 2px;
+            position: relative;
+            transition: background .2s ease-out;
+            width: 18px;
+        }
+
+            .header .menu-icon .navicon:before,
+            .header .menu-icon .navicon:after {
+                background: #fff;
+                content: '';
+                display: block;
+                height: 100%;
+                position: absolute;
+                transition: all .2s ease-out;
+                width: 100%;
+            }
+
+            .header .menu-icon .navicon:before {
+                top: 5px;
+            }
+
+            .header .menu-icon .navicon:after {
+                top: -5px;
+            }
+
+    /* clickable button for hamburger menu/X icon */
+    .header .menu-btn:checked ~ .menu {
+        max-height: 340px;
+    }
+
+    .header .menu-btn:checked ~ .menu-icon .navicon {
+        background: transparent;
+    }
+
+        .header .menu-btn:checked ~ .menu-icon .navicon:before {
+            transform: rotate(-45deg);
+        }
+
+        .header .menu-btn:checked ~ .menu-icon .navicon:after {
+            transform: rotate(45deg);
+        }
+
+    .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+    .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+        top: 0;
+    }
+
+    footer {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    main {
+        padding-left: 10%;
+        padding-right: 10%;
+        font-size: 14pt;
+    }
+
+    th, td {
+        padding-left: initial;
+        padding-right: initial;
+    }
+
+    div.border-div {
+        padding: 50px 15px 50px 15px;
+    }
+
+    div.small-div {
+        width: 75%;
+    }
+
+    div.medium-div {
+        width: 85%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .navbar-logo {
+        padding-left: 5%;
+    }
+
+    .header .menu-icon {
+        padding-right: 5%;
+    }
+
+    footer {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    main {
+        padding-left: 5%;
+        padding-right: 5%;
+        font-size: 12pt;
+    }
+
+    div.border-div {
+        padding: 25px 10px 25px 10px;
+    }
+
+    div.small-div {
+        width: 100%;
+    }
+
+    div.medium-div {
+        width: 100%;
+    }
+}
+
+/* =================================
+    Fonts
+==================================== */
+
+@font-face {
+    font-family: 'Baloo 2';
+    src: url('../resources/fonts/Baloo 2/Baloo2-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../resources/fonts/Montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat SemiBold';
+    src: url('../resources/fonts/Montserrat/Montserrat-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Vollkorn Bold';
+    src: url('../resources/fonts/Vollkorn/Vollkorn-Bold.ttf');
+}

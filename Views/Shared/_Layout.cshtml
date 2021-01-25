@@ -1,48 +1,180 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string email = null;
+    var e = new Byte[32];
+    bool isLoggedIn = false; //Context.Session.TryGetValue("Email", out e);
+    if (isLoggedIn)
+    {
+        email = System.Text.Encoding.UTF8.GetString(e);
+    }
+
+    char accountType = '\0';
+    var at = new Byte[1];
+    bool hasAccountType = false; //Context.Session.TryGetValue("AccountType", out at);
+    if (hasAccountType)
+    {
+        accountType = Convert.ToChar(System.Text.Encoding.UTF8.GetString(at));
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - iAttend</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/resources/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/resources/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/resources/images/icons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/resources/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="~/resources/images/icons/site.webmanifest">
+    <link rel="mask-icon" href="~/resources/images/icons/safari-pinned-tab.svg" color="#333333">
+    <link rel="shortcut icon" href="~/resources/images/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#333333">
+    <meta name="msapplication-TileImage" content="~/resources/images/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="~/resources/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#333333">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/styles.css" />
+
+    @RenderSection("Links", required: false)
+
+    <!-- Toastr: https://codeseven.github.io/toastr/-->
+    <link href="~/css/toastr.min.css" rel="stylesheet" />
+    <script src="~/js/toastr.min.js"></script>
+
+    <!-- jQuery DataTables: https://www.datatables.net/ -->
+    <link rel="stylesheet" type="text/css" href="~/css/datatables.min.css" />
+    <script type="text/javascript" src="~/js/datatables.min.js"></script>
+
+    <!-- Select2: https://select2.org/ -->
+    <link href="~/css/select2.min.css" rel="stylesheet" />
+    <script src="~/js/select2.min.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">iAttend</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <div id="navbar-and-content">
+        <div class="menu-wrapper" style="z-index: 1;">
+            <header class="header">
+                <div class="navbar-logo">
+                    <a class="navbar-logo-link" asp-controller="Home" asp-action="Index">
+                        <img id="navbar-logo-image" src="~/resources/images/iAttend-Logo-White.svg" />
+                        <span id="navbar-logo-text">iAttend</span>
+                    </a>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+                <input id="menu-btn" class="menu-btn" type="checkbox" />
+                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul id="menu" class="menu">
+                    @{
+                        if (isLoggedIn == false)
+                        {
+                            <li><a asp-controller="Home" asp-action="Login">Log In</a></li>
+                            <li><a asp-controller="Accounts" asp-action="Create">Register</a></li>
+                        }
+                        else
+                        {
+                            if (accountType == 'a')
+                            {
+                                <li><a asp-controller="Home" asp-action="AdminActions">Admin Actions</a></li>
+                            }
+                            <li><a asp-controller="AccountAttendances" asp-action="Attendance">Attendance</a></li>
+                            <li><a asp-controller="Home" asp-action="Events">Events</a></li>
+                            <li><a asp-controller="Accounts" asp-action="MyAccount">My Account</a></li>
+                        }
+                    }
+                </ul>
+            </header>
+        </div>
+        <main role="main">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - iAttend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+        <div class="flex-container">
+            <div>
+                <strong>iAttend</strong>
+                <br />
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </div>
+            <div>
+                <strong>Account</strong>
+                @if (isLoggedIn)
+                {
+                    <br />
+                    <a asp-controller="Home" asp-action="Logout">Log Out</a>
+                    <br />
+                    <a asp-controller="Accounts" asp-action="MyAccount">My Account</a>
+                }
+                else
+                {
+                    <br />
+                    <a asp-controller="Home" asp-action="Login">Log In</a>
+                    <br />
+                    <a asp-controller="Accounts" asp-action="Create">Register</a>
+                }
+                <br />
+                <a asp-controller="Home" asp-action="RequestNewPassword">Reset Password</a>
+            </div>
+            @if (isLoggedIn)
+            {
+                <div>
+                    <strong>Records</strong>
+                    <br />
+                    <a asp-controller="AccountAttendances" asp-action="Attendance">Attendance</a>
+                    <br />
+                    <a asp-controller="Home" asp-action="Events">Events</a>
+                </div>
+            }
+            @if (isLoggedIn && accountType == 'a')
+            {
+                <div>
+                    <strong>Admin</strong>
+                    <br />
+                    <a asp-controller="Home" asp-action="AdminActions">Admin Actions</a>
+                    <br />
+                    <a asp-controller="Home" asp-action="ManageTracks">Education Tracks</a>
+                    <br />
+                    <a asp-controller="Home" asp-action="ManageAccounts">Manage Accounts</a>
+                    <br />
+                    <a asp-controller="Home" asp-action="ManageRequirements">Requirements</a>
+                    <br />
+                    <a asp-controller="Home" asp-action="ManageTimeFrames">Time Frames</a>
+                </div>
+            }
         </div>
+        <a href="mailto:threefuriouslocomotives@gmail.com">threefuriouslocomotives@gmail.com</a>
+        <br />
+        Copyright &copy; @DateTime.Now.Year Three Furious Locomotives. All Rights Reserved.
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($('.header').width() <= 1024) {
+                $('#menu').hide();
+            }
+
+            if (document.getElementById('menu-btn').checked) {
+                $('#menu-btn').prop('checked', false);
+            }
+
+            $(window).resize(function () {
+                if ($('.header').width() <= 1024) {
+                    $('#menu').hide();
+                } else {
+                    $('#menu').show();
+                }
+
+                if (document.getElementById('menu-btn').checked) {
+                    $('#menu-btn').prop('checked', false);
+                }
+            });
+
+            $('#menu-btn').click(function () {
+                $("#menu").toggle(this.checked);
+            });
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
