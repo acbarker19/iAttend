@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Log In";
+}
+
+<div class="center-contents-on-screen">
+    <div class="border-div small-div">
+        <h2 class="hor-center-text">Log In</h2>
+        <div class="input-wrapper w-100">
+            <input type="text" id="email" class="fl-input" placeholder="Email" required />
+            <label for="email" class="fl-input-label">Email</label>
+        </div>
+        <div class="input-wrapper w-100">
+            <input type="password" id="password" class="fl-input" placeholder="Password" required />
+            <label for="password" class="fl-input-label">Password</label>
+        </div>
+        <input type="submit" value="Login" class="hor-center-element mt-2" />
+        <p id="login-error" class="subtext" style="color: darkred; text-align: center; display: block;"></p>
+        <p class="subtext"><a asp-controller="Home" asp-action="RequestNewPassword">Forgot your password?</a></p>
+        <p class="subtext"><a asp-controller="Accounts" asp-action="Create">Create an account.</a></p>
+    </div>
+</div>

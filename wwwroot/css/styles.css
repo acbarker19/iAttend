@@ -293,6 +293,7 @@ select {
 
 input {
     border-radius: 6px;
+    outline: none;
 }
 
     input[type=submit], input[type=button] {
@@ -306,6 +307,48 @@ input {
             color: #c9c9c9;
             cursor: pointer;
         }
+
+.input-wrapper {
+    position: relative;
+    margin: 25px auto;
+}
+
+.fl-input {
+    line-height: 2em;
+    padding-left: 10px;
+    width: 100%;
+    font-size: medium;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+}
+
+    .fl-input:focus {
+        border: 1px solid #8e18c9;
+    }
+
+.fl-input-label {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    bottom: 1.5rem;
+    transition: 0.2s ease-in-out transform;
+    font-size: 12px;
+}
+
+.fl-input:placeholder-shown + .fl-input-label {
+    visibility: hidden;
+    z-index: -1;
+    transition: 0.2s ease-in-out;
+}
+
+.fl-input:not(:placeholder-shown) + .fl-input-label,
+.fl-input:focus:not(:placeholder-shown) + .fl-input-label {
+    visibility: visible;
+    z-index: 1;
+    opacity: 1;
+    transform: translateY(-5px);
+    transition: 0.2s ease-in-out transform;
+}
 
 /* =================================
     Buttons
