@@ -10,6 +10,7 @@ html {
 body {
     margin: 0;
     background-color: #fafafa;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -17,11 +18,6 @@ body {
 main {
     padding: 5px 20% 5px 20%;
     height: 100%;
-    flex: 1 0 auto;
-}
-
-/* Pushes footer to the bottom of short pages. */
-#navbar-and-content {
     flex: 1 0 auto;
 }
 
@@ -92,7 +88,7 @@ img.barcode-img {
 }
 
     .flex-container div {
-        margin: 15px 30px 15px 0px;
+        margin: 0px 30px 5px 0px;
     }
 
 p, span, label, select, table tr td, input, button, ul, ol, footer {
@@ -115,9 +111,41 @@ p, span, label, select, table tr td, input, button, ul, ol, footer {
     top: 0;
 }
 
-.header {
-    background-color: #2b2b2b;
+
+
+.navbar-brand {
+    font-family: 'Baloo 2', sans-serif;
+    color: #fafafa;
+    letter-spacing: -2px;
+    font-size: 24pt;
+    padding: 0;
 }
+
+.navbar-brand-logo {
+    margin-top: .35rem;
+}
+
+.navbar {
+    background-color: #2b2b2b !important;
+}
+
+    .navbar a:visited {
+        color: #fafafa;
+    }
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fafafa;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(250, 250, 250, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
 
     .header ul {
         margin: 0;
@@ -191,9 +219,9 @@ footer {
     background-color: #e8e8e8;
     border-top: 1px solid #dbdbdb;
     width: 100%;
-    font-size: 12pt;
+    font-size: 10pt;
     padding: 5px 20% 5px 20%;
-    margin-top: 55px;
+    margin-top: auto;
 }
 
 /* =================================
@@ -245,6 +273,10 @@ a {
 
     a:active {
         color: #b94af0;
+    }
+
+    a:hover {
+        color: #63108C;
     }
 
 /* =================================
@@ -333,6 +365,10 @@ input {
     bottom: 1.5rem;
     transition: 0.2s ease-in-out transform;
     font-size: 12px;
+}
+
+.fl-input:focus + .fl-input-label {
+    color: #8e18c9;
 }
 
 .fl-input:placeholder-shown + .fl-input-label {
