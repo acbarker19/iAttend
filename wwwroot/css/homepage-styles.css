@@ -1,8 +1,6 @@
 ﻿main {
-    padding: 5px 5% 5px 5%;
     background: rgb(85,22,168);
     background: linear-gradient(125deg, rgba(85,22,168,1) 25%, rgba(180,61,207,1) 100%);
-    z-index: -1;
 }
 
 h1 {
@@ -12,31 +10,60 @@ h1 {
 
 .homepage-subtext {
     margin-top: 25px;
-    width: 500px;
+    margin-bottom: 10px;
 }
 
-#homepage-img {
-    width: 600px;
+div.border-div {
+    width: 80%;
+    max-width: 650px;
+    word-wrap: break-word;
 }
 
-@media (max-width: 1500px) {
-    
+.input-wrapper {
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
-@media (max-width: 1024px) {
-    #homepage-img {
-        width: 500px;
+.subtext {
+    margin-bottom: 0px;
+}
+
+@media only screen and (min-width: 1203px) {
+    #home-icon {
+        max-height: 60vh;
     }
 }
 
-@media (max-width: 768px) {
-    #homepage-img {
-        width: 400px;
+@media only screen and (max-width: 1031px) {
+    div.border-div {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 42pt;
     }
 }
 
-@media (max-width: 560px) {
-    .homepage-subtext {
-        width: 400px;
+@media only screen and (max-width: 767px) {
+    #home-icon {
+        max-width: 60vw;
+    }
+
+    div.border-div {
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 36pt;
+    }
+}
+
+@media only screen and (max-width: 351px) {
+    div.border-div {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 30pt;
     }
 }
