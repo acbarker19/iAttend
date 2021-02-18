@@ -17,12 +17,14 @@
                 <p class="homepage-subtext">iAttend makes it easy to track attendance at any event you are attending or hosting.</p>
                 <div class="row">
                     <div class="col input-wrapper" style="min-width: 185px;">
-                        <input type="text" id="email" class="fl-input" placeholder="Email address" required />
+                        <input type="text" id="email" class="fl-input" placeholder="Email address" />
                         <label for="email" class="fl-input-label">Email address</label>
-                        <p class="subtext">Already using iAttend? <a asp-controller="Home" asp-action="Login">Sign in</a>.</p>
+                        <p class="subtext">Already using iAttend? <a asp-controller="Account" asp-action="Login">Sign in</a>.</p>
                     </div>
-                    <div class="col-sm-auto" style="margin-top: 7px;">
-                        <button>Get started</button>
+                    <div class="col-sm-auto" style="margin-top: 11px;">
+                        <a asp-controller="Account" asp-action="Register">
+                            <input id="submit-get-started" type="submit" value="Get Started" />
+                        </a>
                     </div>
                 </div>
             </div>

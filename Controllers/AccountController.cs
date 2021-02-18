@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using iAttend.ViewModels.Home;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace iAttend.Controllers
@@ -15,6 +16,11 @@ namespace iAttend.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult Register(string email = null)
+        {
+            return View(new RegisterViewModel { email = email });
         }
     }
 }

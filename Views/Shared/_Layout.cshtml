@@ -75,7 +75,7 @@
                             <a class="nav-link" asp-controller="Account" asp-action="Login">Log In</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Account" asp-action="Create">Register</a>
+                            <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
                         </li>
     }
     else
@@ -102,7 +102,10 @@
             </div>
         </nav>
     </header>
-    <main role="main" class="py-3 mt-6">
+@{
+    var cssClass = Context.Request.Path != "/" && Context.Request.Path != "/Home/Index" ? "container" : "";
+}
+    <main role="main" class="py-3 mt-6 @cssClass">
         @RenderBody()
     </main>
 

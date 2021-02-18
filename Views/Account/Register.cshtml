@@ -1,0 +1,75 @@
+﻿@model iAttend.ViewModels.Home.RegisterViewModel
+@{
+    ViewData["Title"] = "Create An Account";
+}
+
+<div class="border-div medium-div">
+    <h2 class="text-center">Create An Account</h2>
+    <div class="input-wrapper w-100 mb-0">
+        <input type="text" id="email" class="fl-input" placeholder="Email" value=@Model.email required />
+        <label for="first-name" class="fl-input-label">Email</label>
+    </div>
+    <span class="subtext">You must use your University of Mount Union email account.</span>
+    <div class="input-wrapper w-100">
+        <input type="text" id="first-name" class="fl-input" placeholder="First Name" required />
+        <label for="first-name" class="fl-input-label">First Name</label>
+    </div>
+    <div class="input-wrapper w-100">
+        <input type="text" id="last-name" class="fl-input" placeholder="Last Name" required />
+        <label for="last-name" class="fl-input-label">Last Name</label>
+    </div>
+    <span class="form-label">Expected Graduation Date</span>
+    <div class="row">
+        <div class="col-sm-6">
+            <select class="w-100" name="select-month" id="select-month" required>
+                <option value="" disabled selected style="display: none;">Select Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+        <div class="col-sm-6 stacked-select">
+            <select class="w-100" name="select-year" id="select-year" required>
+                <option value="" disabled selected style="display: none;">Select Year</option>
+                <option value="1">@DateTime.Now.Year</option>
+                <option value="2">@(DateTime.Now.Year + 1)</option>
+                <option value="3">@(DateTime.Now.Year + 2)</option>
+                <option value="4">@(DateTime.Now.Year + 3)</option>
+                <option value="5">@(DateTime.Now.Year + 4)</option>
+                <option value="6">@(DateTime.Now.Year + 5)</option>
+            </select>
+        </div>
+    </div>
+    <div class="input-wrapper w-100 mb-0">
+        <input type="password" id="password" class="fl-input" placeholder="Password" required />
+        <label for="password" class="fl-input-label">Password</label>
+    </div>
+    <span class="subtext">Passwords must contain at least 8 characters, one capital letter, one special character, and one number.</span>
+    <div class="input-wrapper w-100">
+        <input type="password" id="confirm-password" class="fl-input" placeholder="Confirm Password" required />
+        <label for="confirm-password" class="fl-input-label">Confirm Password</label>
+    </div>
+    <span class="form-label">Education Track</span>
+    <div class="row">
+        <div class="col-sm-6">
+            <select class="w-100" name="select-track" id="select-track" required>
+                <option value="" disabled selected style="display: none;">Select Track</option>
+                <option value="1">Music Major</option>
+                <option value="2">Music Minor</option>
+                <option value="3">Music Education</option>
+            </select>
+        </div>
+    </div>
+    <div class="text-center" style="margin-top: 25px;">
+        <input id="submit-register" type="submit" value="Create Account" />
+    </div>
+</div>
