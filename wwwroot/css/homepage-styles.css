@@ -6,6 +6,7 @@
 h1 {
     line-height: 0.8em;
     text-align: center;
+    font-size: 48pt;
 }
 
 .homepage-subtext {
@@ -24,6 +25,10 @@ div.border-div {
     margin-bottom: 0px;
 }
 
+.fl-input-label {
+    bottom: 2.6rem;
+}
+
 .subtext {
     margin-bottom: 0px;
 }
@@ -40,7 +45,7 @@ div.border-div {
     }
 
     h1 {
-        font-size: 42pt;
+        font-size: 40pt;
     }
 }
 
