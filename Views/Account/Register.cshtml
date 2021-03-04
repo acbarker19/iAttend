@@ -10,7 +10,30 @@
             $("form").submit(function(e){
                 e.preventDefault();
 
-                // ajax call
+                $.post("@Url.Action("Register")", 
+                    {
+                        email: $("#email").val(),
+                        firstName: $("#first-name").val(),
+                        nickname: $("#nickname").val(),
+                        lastName: $("#last-name").val(),
+                        expGradMonth: $("#select-month").val(),
+                        expGradYear: $("#select-year").val(),
+                        password: $("#password").val(),
+                        confirmPassword: $("#confirm-password").val(),
+                        trackId: $("#select-track").val()
+                    }
+                )
+                .done(function(data) {
+                    if(data.success) {
+                        toastr.success(data.message);
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+                })
+                .fail(function() {
+                    toastr.error('An error has occurred. Please try again.');
+                });
 
                 return false;
             });
@@ -22,23 +45,23 @@
     <form>
         <h2 class="text-center">Create An Account</h2>
         <div class="input-wrapper w-100 mb-0">
-            <input type="email" id="email" class="fl-input" placeholder="Email" value=@Model.email required />
-            <label for="first-name" class="fl-input-label">Email</label>
+            <input type="email" pattern=".*@@[mM][oO][uU][nN][tT][uU][nN][iI][oO][nN][.][eE][dD][uU]$" minlength="16" maxlength="40" id="email" class="fl-input" placeholder="Email*" value=@Model.email required />
+            <label for="first-name" class="fl-input-label">Email*</label>
         </div>
         <span class="subtext">You must use your University of Mount Union email account.</span>
         <div class="input-wrapper w-100">
-            <input type="text" id="first-name" class="fl-input" placeholder="First Name" required />
-            <label for="first-name" class="fl-input-label">First Name</label>
+            <input type="text" minlength="1" maxlength="30" id="first-name" class="fl-input" placeholder="First Name*" required />
+            <label for="first-name" class="fl-input-label">First Name*</label>
         </div>
         <div class="input-wrapper w-100">
-            <input type="text" id="nickname" class="fl-input" placeholder="Nickname" />
+            <input type="text" maxlength="30" id="nickname" class="fl-input" placeholder="Nickname" />
             <label for="nickname" class="fl-input-label">Nickname</label>
         </div>
         <div class="input-wrapper w-100">
-            <input type="text" id="last-name" class="fl-input" placeholder="Last Name" required />
-            <label for="last-name" class="fl-input-label">Last Name</label>
+            <input type="text" minlength="1" maxlength="30" id="last-name" class="fl-input" placeholder="Last Name*" required />
+            <label for="last-name" class="fl-input-label">Last Name*</label>
         </div>
-        <span class="form-label">Expected Graduation Date</span>
+        <span class="form-label">Expected Graduation Date*</span>
         <div class="row">
             <div class="col-sm-6">
                 <select class="w-100" name="select-month" id="select-month" required>
@@ -59,26 +82,25 @@
             </div>
             <div class="col-sm-6 stacked-select">
                 <select class="w-100" name="select-year" id="select-year" required>
-                    <option value="" disabled selected style="display: none;">Select Year</option>
-                    <option value="1">@DateTime.Now.Year</option>
-                    <option value="2">@(DateTime.Now.Year + 1)</option>
-                    <option value="3">@(DateTime.Now.Year + 2)</option>
-                    <option value="4">@(DateTime.Now.Year + 3)</option>
-                    <option value="5">@(DateTime.Now.Year + 4)</option>
-                    <option value="6">@(DateTime.Now.Year + 5)</option>
+                    <option disabled selected style="display: none;">Select Year</option>
+@for (int i = 0; i < 6; i++)
+{
+    int year = DateTime.Now.Year + i;
+                    <option value="@year">@year</option>
+}
                 </select>
             </div>
         </div>
         <div class="input-wrapper w-100 mb-0">
-            <input type="password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.[!@@#$%&?]).{8,32})" id="password" class="fl-input" placeholder="Password" required />
-            <label for="password" class="fl-input-label">Password</label>
+            <input type="password" pattern="@Model.passwordRegex" minlength="8" maxlength="32" id="password" class="fl-input" placeholder="Password*" required />
+            <label for="password" class="fl-input-label">Password*</label>
         </div>
-        <span class="subtext">Passwords must contain 8-32 characters, one uppercase letter, one lowercase letter, one special character (!@@#$%&?), and one number.</span>
+        <span class="subtext">Passwords must contain 8-32 characters with at least one uppercase letter, one lowercase letter, one special character (!@@#$%&?), and one number.</span>
         <div class="input-wrapper w-100">
-            <input type="password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.[!@@#$%&?]).{8,32})" id="confirm-password" class="fl-input" placeholder="Confirm Password" required />
-            <label for="confirm-password" class="fl-input-label">Confirm Password</label>
+            <input type="password" pattern="@Model.passwordRegex" id="confirm-password" class="fl-input" placeholder="Confirm Password*" required />
+            <label for="confirm-password" class="fl-input-label">Confirm Password*</label>
         </div>
-        <span class="form-label">Education Track</span>
+        <span class="form-label">Education Track*</span>
         <div class="row">
             <div class="col-sm-6">
                 <select class="w-100" name="select-track" id="select-track" required>
